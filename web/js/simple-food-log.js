@@ -4,7 +4,6 @@ var secondFood = { index: 1, entry: 'Eggs 170 cal', calories: '170' };
 var thirdFood = { index: 2, entry: 'Orange Juice 100 cal', calories: '100' };
 var foods = [firstFood, secondFood, thirdFood];
 
-// var FoodEntry = React.createElement('li', {}, this.props.food);
 var FoodEntry = React.createClass({
     propTypes: {
         entry: React.PropTypes.string.isRequired,
@@ -17,19 +16,17 @@ var FoodEntry = React.createClass({
     }
 });
 
-var listFoods = foods.map(function(food) {
-    return React.createElement(FoodEntry, food);
-});
-
 var FoodList = React.createClass({
     render: function() {
         return (
-            React.createElement('ul', {}, this.props.foods)
+            React.createElement('ul', { key: 0 }, this.props.foods.map(function(food) {
+                return React.createElement(FoodEntry, food);
+            }))
         );
     }
 });
 
-var root = React.createElement(FoodList, { foods: listFoods });
+var root = React.createElement(FoodList, { foods: foods });
 ReactDOM.render(root, document.getElementById('food-list'));
 
 /* tests below */
