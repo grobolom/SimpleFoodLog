@@ -1,7 +1,7 @@
 var app = {};
-var firstFood = { index: 0, entry: 'Bacon 120 cal', calories: '120' };
-var secondFood = { index: 1, entry: 'Eggs 170 cal', calories: '170' };
-var thirdFood = { index: 2, entry: 'Orange Juice 100 cal', calories: '100' };
+var firstFood = { key: 0, entry: 'Bacon 120 cal', calories: '120' };
+var secondFood = { key: 1, entry: 'Eggs 170 cal', calories: '170' };
+var thirdFood = { key: 2, entry: 'Orange Juice 100 cal', calories: '100' };
 var foods = [firstFood, secondFood, thirdFood];
 
 var FoodEntry = React.createClass({
@@ -11,7 +11,7 @@ var FoodEntry = React.createClass({
 
     render: function() {
         return (
-            React.createElement('li', { key: this.props.index }, this.props.entry)
+            React.createElement('li', { key: this.props.key }, this.props.entry)
         );
     }
 });
@@ -19,8 +19,9 @@ var FoodEntry = React.createClass({
 var FoodList = React.createClass({
     render: function() {
         return (
-            React.createElement('ul', { key: 0 }, this.props.foods.map(function(food) {
-                return React.createElement(FoodEntry, food);
+            React.createElement('ul', {}, this.props.foods.map(function(food) {
+                // this should pass down an actual 'key' prop
+                return React.createElement(FoodEntry, food); 
             }))
         );
     }
