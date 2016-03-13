@@ -2,12 +2,20 @@
 
 RCE = React.createComponent;
 
+initialIndex = 4;
 var FoodInput = React.createClass({
     handleSubmit: function(event) {
         event.preventDefault();
-        var newEntryName = event.target.children[0].value;
-        console.log(newEntryName);
-        event.target.children[0].value = '';
+        input = event.target.children[0];
+        
+        var newEntryName = input.value;
+        var newFood = {
+            key: ++initialIndex,
+            entry: newEntryName,
+            calories: calculateCalories(newEntryName)
+        };
+        store.dispatch(addFood(newFood));
+        input.value = '';
     },
     render: function() {
         return RCE('form', { onSubmit: this.handleSubmit },
