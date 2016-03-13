@@ -35,11 +35,22 @@ var root = React.createClass({
         return true;
     },
     render: function() {
-        return RCE('div', {},
-            RCE(FoodTotal, { total: foodTotal(store.getState().foods) }),
-            RCE(FoodList, store.getState()),
-            RCE(FoodInput, {})
-        );
+        return RCE('div', { className: 'container'},
+                RCE('h1', {}, 'SimpleFoodLog (working)'),
+                RCE('div', { className: 'row' },
+                    RCE('div', { className: 'u-full-width u-cf' },
+                        RCE('div', { className: 'four columns' },
+                            RCE(FoodTotal, {
+                                total: foodTotal(store.getState().foods)
+                            })
+                        )
+                    ),
+                    RCE('div', { className: 'four columns' },
+                        RCE(FoodList, store.getState()),
+                        RCE(FoodInput, {})
+                    )
+                )
+            );
     }
 });
 
