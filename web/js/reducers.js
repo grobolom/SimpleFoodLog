@@ -20,21 +20,15 @@ var sflReducer = function(state = {}, action) {
 
 // tests
 var testInitialState = { foods: [] };
-var testAddTodoAction = {
-    type: 'ADD_FOOD',
-    entry: { index: '1', entry: 'Bacon Bits 200' }
-};
-var expectedNextState = { foods: [testAddTodoAction.entry] };
-var nextState = sflReducer(testInitialState, testAddTodoAction);
+var testAddFoodAction = addFood({ index : '1', entry: 'Bacon 200'});
+var expectedNextState = { foods: [{ index : '1', entry: 'Bacon 200'}] };
+var nextState = sflReducer(testInitialState, testAddFoodAction);
 
 console.assert(_.isEqual(expectedNextState, nextState), 'adds food');
 
 var testInitialState = { foods: [{ key: '2'}] };
-var testRemoveTodoAction = {
-    type: 'REMOVE_FOOD',
-    index: '2'
-};
+var testRemoveFoodAction = removeFood('2');
 var expectedNextState = { foods: [] };
-var nextState = sflReducer(testInitialState, testRemoveTodoAction);
+var nextState = sflReducer(testInitialState, testRemoveFoodAction);
 
 console.assert(_.isEqual(expectedNextState, nextState), 'removes food');
