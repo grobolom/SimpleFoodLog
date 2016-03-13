@@ -9,6 +9,44 @@ var fourthFood = { key: 3, entry: 'Bacon Grease 500 cal', calories: '500' };
 var foods = [firstFood, secondFood, thirdFood, fourthFood];
 
 var app = {};
+var createStore = function (reducer) {
+    var state;
+    var observers = [];
+
+    var getState = function() {
+        return state;
+    };
+
+    var dispatch = function(action) {
+        state = reducer(state, action);
+        // don't need to pass in state because the observers will call getState
+        var listeners = observers;
+        for (var i = 0; i < listeners.length; i++) {
+            listeners[i]();
+        }
+    };
+
+    var subscribe = function(observer) {
+        observers.push(observer);
+    };
+
+    return {
+        getState: getState,
+        dispatch: dispatch,
+        subscribe: subscribe
+    };
+};
+
+var reducer = function(state, action) {
+    return app.foods;
+};
+var store = createStore(reducer);
+
+var listener = function() {
+    console.log('something');
+}
+store.subscribe(listener);
+store.dispatch({ type: 'bogus_action' });
 
 // functions TODO: extract theses?
 
