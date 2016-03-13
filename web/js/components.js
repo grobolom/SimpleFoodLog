@@ -19,7 +19,11 @@ var FoodInput = React.createClass({
     },
     render: function() {
         return RCE('form', { onSubmit: this.handleSubmit },
-            RCE('input', { type: 'text', className: 'u-full-width' }),
+            RCE('input', {
+                type: 'text',
+                className: 'u-full-width',
+                autoFocus: true
+            }),
             RCE('input', {
                 type: 'submit',
                 className: 'button-primary',
