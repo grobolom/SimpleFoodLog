@@ -2,12 +2,13 @@
 var RCE = React.createElement;
 
 // sample data
-var app = {};
 var firstFood = { key: 0, entry: 'Bacon 120 cal', calories: '120' };
 var secondFood = { key: 1, entry: 'Eggs 170 cal', calories: '170' };
 var thirdFood = { key: 2, entry: 'Orange Juice 100 cal', calories: '100' };
 var fourthFood = { key: 3, entry: 'Bacon Grease 500 cal', calories: '500' };
 var foods = [firstFood, secondFood, thirdFood, fourthFood];
+
+var app = {};
 
 // functions TODO: extract theses?
 
@@ -19,6 +20,19 @@ var foodTotal = function(foods) {
 
 
 // components 
+var FoodInput = React.createClass({
+    handleSubmit: function(event) {
+        event.preventDefault();
+        var newEntryName = event.target.children[0].value;
+        console.log(newEntryName);
+        event.target.children[0].value = '';
+    },
+    render: function() {
+        return RCE('form', { onSubmit: this.handleSubmit },
+            RCE('input', { type: 'text', className: 'u-full-width' })
+        );
+    }
+});
 
 var FoodEntry = React.createClass({
     propTypes: {
