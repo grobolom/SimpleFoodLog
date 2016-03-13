@@ -17,6 +17,12 @@ var maxIndex = function(foods) {
     }, 0);
 }
 
+var getFoodsByDate = function(foods, date) {
+    return foods.filter(function(element) {
+        return date == element.date;
+    });
+};
+
 /* tests below */
 
 fakeFoods = [{ calories: 100 }, { calories: 250 }, { calories: 150 }];
@@ -30,3 +36,12 @@ console.assert(calculateCalories(fakeFoodEntry) == 250,
 fakeEntries = [{ index: 1 }, { index: 3 }];
 console.assert(maxIndex(fakeEntries) == 3,
     'failed calculating max index');
+
+fakeFoods = [
+    { date: (new Date(2015, 1, 1)).getTime(), index: 0 },
+    { date: (new Date(2015, 1, 2)).getTime(), index: 1 }
+];
+expectedFoods = [{ date: (new Date(2015, 1, 2)).getTime(), index: 1 }];
+testFoods = getFoodsByDate(fakeFoods, (new Date(2015, 1, 2)).getTime());
+console.assert(_.isEqual(testFoods, expectedFoods),
+    'failed fetching foods by date');

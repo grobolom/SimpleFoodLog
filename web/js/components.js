@@ -8,10 +8,18 @@ var FoodInput = React.createClass({
         input = event.target.children[0];
         
         var newEntryName = input.value;
+        var date = (new Date());
+        var foodDate = (
+            new Date(
+                date.getFullYear(),
+                date.getMonth() + 1,
+                date.getDate()
+            )).getTime();
         var newFood = {
             index: ++initialIndex,
             entry: newEntryName,
-            calories: calculateCalories(newEntryName)
+            calories: calculateCalories(newEntryName),
+            date: foodDate
         };
         store.dispatch(addFood(newFood));
         input.value = '';
