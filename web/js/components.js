@@ -2,7 +2,7 @@
 
 RCE = React.createComponent;
 
-initialIndex = 4;
+initialIndex = 0;
 var FoodInput = React.createClass({
     handleSubmit: function(event) {
         event.preventDefault();
@@ -67,4 +67,3 @@ var FoodTotal = React.createClass({
         );
     }
 });
-
