@@ -5,9 +5,9 @@ var addFood = function (entry) {
     }
 };
 
-var removeFood = function (entry) {
+var removeFood = function (index) {
     return {
         type: 'REMOVE_FOOD',
-        entry
+        index
     }
 };

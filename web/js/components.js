@@ -37,9 +37,19 @@ var FoodEntry = React.createClass({
         entry: React.PropTypes.string.isRequired,
     },
 
+    handleClick: function() {
+        store.dispatch(removeFood(this.props.index));
+    },
+
     render: function() {
         return (
-            RCE('li', { key: this.props.key }, this.props.entry)
+            RCE('li', { key: this.props.index },
+                RCE('span', {}, this.props.entry ),
+                RCE('span', {
+                    className: 'u-pull-right',
+                    onClick: this.handleClick
+                },'-')
+            )
         );
     }
 });
@@ -49,7 +59,8 @@ var FoodList = React.createClass({
         return (
             RCE('ul', {}, this.props.foods.map(function(food) {
                 // this should pass down an actual 'key' prop
-                return RCE(FoodEntry, food); 
+                var foo = Object.assign({}, food, { index: food.key });
+                return RCE(FoodEntry, foo); 
             }))
         );
     }
