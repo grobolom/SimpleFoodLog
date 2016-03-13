@@ -4,3 +4,10 @@ var addFood = function (entry) {
         entry
     }
 };
+
+var removeFood = function (entry) {
+    return {
+        type: 'REMOVE_FOOD',
+        entry
+    }
+};
