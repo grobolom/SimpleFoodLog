@@ -10,10 +10,10 @@ var calculateCalories = function(entry) {
     return stuff ? parseInt(stuff) : 0;
 }
 
-var maxKey = function(foods) {
+var maxIndex = function(foods) {
     return foods.reduce(function(previous, current) {
-        currentKey = current.key;
-        return previous > currentKey ? previous : currentKey;
+        currentIndex = current.index;
+        return previous > currentIndex ? previous : currentIndex;
     }, 0);
 }
 
@@ -27,6 +27,6 @@ fakeFoodEntry = 'bacon 250kcal';
 console.assert(calculateCalories(fakeFoodEntry) == 250,
     'failed calculating calories from food name');
 
-fakeEntries = [{ key: 1 }, { key: 3 }];
-console.assert(maxKey(fakeEntries) == 3,
-    'failed calculating max key');
+fakeEntries = [{ index: 1 }, { index: 3 }];
+console.assert(maxIndex(fakeEntries) == 3,
+    'failed calculating max index');

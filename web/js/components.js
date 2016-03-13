@@ -9,7 +9,7 @@ var FoodInput = React.createClass({
         
         var newEntryName = input.value;
         var newFood = {
-            key: ++initialIndex,
+            index: ++initialIndex,
             entry: newEntryName,
             calories: calculateCalories(newEntryName)
         };
@@ -58,8 +58,7 @@ var FoodList = React.createClass({
     render: function() {
         return (
             RCE('ul', {}, this.props.foods.map(function(food) {
-                // this should pass down an actual 'key' prop
-                var foo = Object.assign({}, food, { index: food.key });
+                var foo = Object.assign({}, food, { key: food.index });
                 return RCE(FoodEntry, foo); 
             }))
         );

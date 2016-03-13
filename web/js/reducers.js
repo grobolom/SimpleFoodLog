@@ -10,7 +10,7 @@ var sflReducer = function(state = {}, action) {
 
     if (action.type === 'REMOVE_FOOD') {
         var newFoods = state.foods.filter(function (element) {
-            return element.key != action.index;
+            return element.index != action.index;
         });
         return Object.assign({}, state, { foods: newFoods });
     }
@@ -26,7 +26,7 @@ var nextState = sflReducer(testInitialState, testAddFoodAction);
 
 console.assert(_.isEqual(expectedNextState, nextState), 'adds food');
 
-var testInitialState = { foods: [{ key: '2'}] };
+var testInitialState = { foods: [{ index: '2'}] };
 var testRemoveFoodAction = removeFood('2');
 var expectedNextState = { foods: [] };
 var nextState = sflReducer(testInitialState, testRemoveFoodAction);
