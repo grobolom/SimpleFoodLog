@@ -8,38 +8,6 @@ var thirdFood = { key: 2, entry: 'Orange Juice 100 cal', calories: '100' };
 var fourthFood = { key: 3, entry: 'Bacon Grease 500 cal', calories: '500' };
 var foods = [firstFood, secondFood, thirdFood, fourthFood];
 
-var createStore = function (reducer, initialState) {
-    var state;
-    var observers = [];
-
-    if (initialState != undefined) {
-        state = initialState;
-    }
-
-    var getState = function() {
-        return state;
-    };
-
-    var dispatch = function(action) {
-        state = reducer(state, action);
-        // don't need to pass in state because the observers will call getState
-        var listeners = observers;
-        for (var i = 0; i < listeners.length; i++) {
-            listeners[i]();
-        }
-    };
-
-    var subscribe = function(observer) {
-        observers.push(observer);
-    };
-
-    return {
-        getState: getState,
-        dispatch: dispatch,
-        subscribe: subscribe
-    };
-};
-
 var initialState = {
     foods: foods
 };
