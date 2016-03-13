@@ -2,7 +2,6 @@
 
 RCE = React.createComponent;
 
-initialIndex = 0;
 var FoodInput = React.createClass({
     handleSubmit: function(event) {
         event.preventDefault();

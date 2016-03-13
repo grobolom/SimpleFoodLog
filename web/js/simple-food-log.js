@@ -1,10 +1,3 @@
-// store setup
-
-var initialState = {
-    foods: []
-};
-var store = createStore(sflReducer, initialState);
-
 // render and start app
 
 RCE = React.createElement;
@@ -15,26 +8,26 @@ var root = React.createClass({
     },
     render: function() {
         return RCE('div', { className: 'container'},
-                RCE('h1', {}, 'SimpleFoodLog (working)'),
-                RCE('div', { className: 'row' },
-                    RCE('div', { className: 'u-full-width u-cf' },
-                        RCE('div', { className: 'four columns' },
-                            RCE(FoodTotal, {
-                                total: foodTotal(store.getState().foods)
-                            })
-                        ),
-                        RCE('div', { className: 'four columns' },
-                            RCE(FoodRemaining, {
-                                total: foodTotal(store.getState().foods)
-                            })
-                        )
+            RCE('h1', {}, 'SimpleFoodLog (working)'),
+            RCE('div', { className: 'row' },
+                RCE('div', { className: 'u-full-width u-cf' },
+                    RCE('div', { className: 'four columns' },
+                        RCE(FoodTotal, {
+                            total: foodTotal(store.getState().foods)
+                        })
                     ),
                     RCE('div', { className: 'four columns' },
-                        RCE(FoodList, store.getState()),
-                        RCE(FoodInput, {})
+                        RCE(FoodRemaining, {
+                            total: foodTotal(store.getState().foods)
+                        })
                     )
+                ),
+                RCE('div', { className: 'four columns' },
+                    RCE(FoodList, store.getState()),
+                    RCE(FoodInput, {})
                 )
-            );
+            )
+        );
     }
 });
 
@@ -44,6 +37,20 @@ var render = function() {
         document.getElementById('react-app')
     );
 };
+
+// store setup
+
+var oldState = localStorage.getItem('state');
+var initialState = oldState != "undefined" ? JSON.parse(oldState) : { foods: [] };
+
+var store = createStore(sflReducer, initialState);
+var initialIndex = maxKey(store.getState().foods || 0);
+
+var saveState = function(state) {
+    localStorage.setItem('state', JSON.stringify(store.getState()));
+};
+
    
 store.subscribe(render);
+store.subscribe(saveState);
 render();
