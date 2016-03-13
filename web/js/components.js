@@ -46,7 +46,7 @@ var FoodEntry = React.createClass({
             RCE('li', { key: this.props.index },
                 RCE('span', {}, this.props.entry ),
                 RCE('span', {
-                    className: 'u-pull-right',
+                    className: 'u-pull-right remove-food',
                     onClick: this.handleClick
                 },'-')
             )
