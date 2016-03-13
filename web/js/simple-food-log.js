@@ -8,10 +8,13 @@ var thirdFood = { key: 2, entry: 'Orange Juice 100 cal', calories: '100' };
 var fourthFood = { key: 3, entry: 'Bacon Grease 500 cal', calories: '500' };
 var foods = [firstFood, secondFood, thirdFood, fourthFood];
 
-var app = {};
-var createStore = function (reducer) {
+var createStore = function (reducer, initialState) {
     var state;
     var observers = [];
+
+    if (initialState != undefined) {
+        state = initialState;
+    }
 
     var getState = function() {
         return state;
@@ -37,16 +40,13 @@ var createStore = function (reducer) {
     };
 };
 
-var reducer = function(state, action) {
-    return app.foods;
+var initialState = {
+    foods: foods
 };
-var store = createStore(reducer);
+var store = createStore(sflReducer, initialState);
 
-var listener = function() {
-    console.log('something');
-}
-store.subscribe(listener);
-store.dispatch({ type: 'bogus_action' });
+var newFood = { key: '5', entry: 'Bacon 250', calories: '250' };
+
 
 // functions TODO: extract theses?
 
@@ -111,13 +111,27 @@ var FoodTotal = React.createClass({
     }
 });
 
-var root = RCE('div', {},
-    RCE(FoodTotal, { total: foodTotal(foods) }),
-    RCE(FoodList, { foods: foods }),
-    RCE(FoodInput, {})
-);
+var root = React.createClass({
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return true;
+    },
+    render: function() {
+        return RCE('div', {},
+            RCE(FoodTotal, { total: foodTotal(store.getState().foods) }),
+            RCE(FoodList, store.getState()),
+            RCE(FoodInput, {})
+        );
+    }
+});
+
+var render = function() {
+    ReactDOM.render(RCE(root), document.getElementById('react-app'));
+};
    
-ReactDOM.render(root, document.getElementById('react-app'));
+store.subscribe(render);
+render();
+
+store.dispatch(addFood(newFood));
 
 // TODO: make an actual root element, don't draw multiples
 

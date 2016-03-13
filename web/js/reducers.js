@@ -12,7 +12,6 @@ var sflReducer = function(state = {}, action) {
 };
 
 // tests
-
 var testInitialState = { foods: [] };
 var testAddTodoAction = {
     type: 'ADD_FOOD',
