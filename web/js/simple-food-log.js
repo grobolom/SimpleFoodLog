@@ -22,6 +22,11 @@ var root = React.createClass({
                             RCE(FoodTotal, {
                                 total: foodTotal(store.getState().foods)
                             })
+                        ),
+                        RCE('div', { className: 'four columns' },
+                            RCE(FoodRemaining, {
+                                total: foodTotal(store.getState().foods)
+                            })
                         )
                     ),
                     RCE('div', { className: 'four columns' },
