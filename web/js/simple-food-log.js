@@ -1,5 +1,4 @@
 // shortcuts and stuff
-var RCE = React.createElement;
 
 // sample data
 var firstFood = { key: 0, entry: 'Bacon 120 cal', calories: '120' };
@@ -13,9 +12,6 @@ var initialState = {
 };
 var store = createStore(sflReducer, initialState);
 
-var newFood = { key: '5', entry: 'Bacon 250', calories: '250' };
-
-
 // functions TODO: extract theses?
 
 var foodTotal = function(foods) {
@@ -24,60 +20,9 @@ var foodTotal = function(foods) {
     }, 0);
 };
 
+// render and start app
 
-// components 
-var FoodInput = React.createClass({
-    handleSubmit: function(event) {
-        event.preventDefault();
-        var newEntryName = event.target.children[0].value;
-        console.log(newEntryName);
-        event.target.children[0].value = '';
-    },
-    render: function() {
-        return RCE('form', { onSubmit: this.handleSubmit },
-            RCE('input', { type: 'text', className: 'u-full-width' })
-        );
-    }
-});
-
-var FoodEntry = React.createClass({
-    propTypes: {
-        entry: React.PropTypes.string.isRequired,
-    },
-
-    render: function() {
-        return (
-            RCE('li', { key: this.props.key }, this.props.entry)
-        );
-    }
-});
-
-var FoodList = React.createClass({
-    render: function() {
-        return (
-            RCE('ul', {}, this.props.foods.map(function(food) {
-                // this should pass down an actual 'key' prop
-                return RCE(FoodEntry, food); 
-            }))
-        );
-    }
-});
-
-var FoodTotal = React.createClass({
-    propTypes: {
-        total: React.PropTypes.number
-    },
-
-    render: function() {
-        // var value = '<strong>' + this.props.total + '</strong> total calories';
-        return (
-            RCE('h5', {},
-                RCE('strong', {}, this.props.total),
-                RCE('span', {}, ' total calories')
-            )
-        );
-    }
-});
+RCE = React.createElement;
 
 var root = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
@@ -93,13 +38,14 @@ var root = React.createClass({
 });
 
 var render = function() {
-    ReactDOM.render(RCE(root), document.getElementById('react-app'));
+    ReactDOM.render(
+        RCE(root),
+        document.getElementById('react-app')
+    );
 };
    
 store.subscribe(render);
 render();
-
-store.dispatch(addFood(newFood));
 
 // TODO: make an actual root element, don't draw multiples
 
