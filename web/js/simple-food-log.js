@@ -7,16 +7,30 @@ var root = React.createClass({
         return true;
     },
     render: function() {
-        var todaysFoods = store.getState().foods.filter(function(element) {
+        var foods = store.getState().foods;
+        var todaysFoods = foods.filter(function(element) {
             return element.date == moment().format('MM/DD/YYYY');
         });
+        var lastWeeksDates = makeDateWindow(
+            moment().subtract(1, 'days').format('YYYYMMDD'),
+            7
+        );
         var todaysTotal = foodTotal(todaysFoods);
+        var lastWeeksFoods = foods.filter(function(element) {
+            return lastWeeksDates.indexOf(element.date) >= 0;
+        });
+        var weekAverage = Math.round(lastWeeksFoods.reduce(function(previous, current) {
+            return previous + current.calories;
+        }, 0) / 7);
         return RCE('div', { className: 'container'},
             RCE('h1', {}, 'SimpleFoodLog (working)'),
             RCE('div', { className: 'row' },
                 RCE('div', { className: 'u-full-width u-cf' },
                     RCE('div', { className: 'four columns' },
                         RCE(FoodTotal, { total: todaysTotal })
+                    ),
+                    RCE('div', { className: 'four columns' },
+                        RCE(FoodAverage, { average: weekAverage })
                     ),
                     RCE('div', { className: 'four columns' },
                         RCE(FoodRemaining, { total: todaysTotal })
@@ -27,9 +41,7 @@ var root = React.createClass({
                     RCE(FoodInput, {})
                 ),
                 RCE('div', { className: 'four columns u-pull-right' },
-                    RCE(FoodSumList, {
-                        dates: makeDateWindow(moment().format('YYYYMMDD'), 7)
-                    })
+                    RCE(FoodSumList, { dates: lastWeeksDates })
                 )
             )
         );
