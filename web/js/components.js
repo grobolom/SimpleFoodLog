@@ -83,6 +83,17 @@ var FoodTotal = React.createClass({
     }
 });
 
+var FoodAverage = React.createClass({
+    render: function() {
+        return (
+            RCE('h5', {},
+                RCE('strong', {}, this.props.average),
+                RCE('span', {}, ' average calories')
+            )
+        );
+    }
+});
+
 var FoodRemaining = React.createClass({
     propTypes: {
         remaining: React.PropTypes.number
