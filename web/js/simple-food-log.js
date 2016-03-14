@@ -26,7 +26,7 @@ var root = React.createClass({
                     RCE(FoodList, store.getState()),
                     RCE(FoodInput, {})
                 ),
-                RCE('div', { className: 'five columns' },
+                RCE('div', { className: 'four columns u-pull-right' },
                     RCE(DayFoodSum, store.getState())
                 )
             )
