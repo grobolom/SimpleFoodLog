@@ -23,6 +23,15 @@ var getFoodsByDate = function(foods, date) {
     });
 };
 
+var makeDateWindow = function(startDate, daysBefore) {
+    var days = [];
+    for (var i = 0; i < daysBefore; i++) {
+        var date = moment(startDate);
+        days.push(date.subtract(i, 'days').format('MM/DD/YYYY'));
+    }
+    return days;
+};
+
 /* tests below */
 
 fakeFoods = [{ calories: 100 }, { calories: 250 }, { calories: 150 }];
@@ -45,3 +54,8 @@ expectedFoods = [{ date: (new Date(2015, 1, 2)).getTime(), index: 1 }];
 testFoods = getFoodsByDate(fakeFoods, (new Date(2015, 1, 2)).getTime());
 console.assert(_.isEqual(testFoods, expectedFoods),
     'failed fetching foods by date');
+
+expectedDates = ['03/02/2016','03/01/2016','02/29/2016'];
+testDates = makeDateWindow('2016-03-02', 3);
+console.assert(_.isEqual(testDates, expectedDates),
+    'failed making date window');
