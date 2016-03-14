@@ -12,7 +12,6 @@ var createStore = function (reducer, initialState) {
 
     var dispatch = function(action) {
         state = reducer(state, action);
-        // don't need to pass in state because the observers will call getState
         var listeners = observers;
         for (var i = 0; i < listeners.length; i++) {
             listeners[i]();

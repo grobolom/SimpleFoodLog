@@ -73,7 +73,6 @@ var FoodTotal = React.createClass({
     },
 
     render: function() {
-        // var value = '<strong>' + this.props.total + '</strong> total calories';
         return (
             RCE('h5', {},
                 RCE('strong', {}, this.props.total),

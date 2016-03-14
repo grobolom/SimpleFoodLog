@@ -23,7 +23,7 @@ var root = React.createClass({
             return previous + current.calories;
         }, 0) / 7);
         return RCE('div', { className: 'container'},
-            RCE('h1', {}, 'SimpleFoodLog (working)'),
+            RCE('h1', {}, 'SimpleFoodLog'),
             RCE('div', { className: 'row' },
                 RCE('div', { className: 'u-full-width u-cf' },
                     RCE('div', { className: 'four columns' },
