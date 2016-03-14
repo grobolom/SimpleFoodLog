@@ -27,7 +27,14 @@ var root = React.createClass({
                     RCE(FoodInput, {})
                 ),
                 RCE('div', { className: 'four columns u-pull-right' },
-                    RCE(DayFoodSum, store.getState())
+                    RCE('ul', {}, 
+                        RCE(DayFoodSum, Object.assign({}, store.getState(), {
+                            date: moment().format('MM/DD/YYYY')
+                        })),
+                        RCE(DayFoodSum, Object.assign({}, store.getState(), {
+                            date: moment().subtract(1, 'days').format('MM/DD/YYYY')
+                        }))
+                    )
                 )
             )
         );
