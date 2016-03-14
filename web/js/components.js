@@ -8,18 +8,12 @@ var FoodInput = React.createClass({
         input = event.target.children[0];
         
         var newEntryName = input.value;
-        var date = (new Date());
-        var foodDate = (
-            new Date(
-                date.getFullYear(),
-                date.getMonth(),
-                date.getDate()
-            )).getTime();
+        var date = moment().format('MM/DD/YYYY');
         var newFood = {
             index: ++initialIndex,
             entry: newEntryName,
             calories: calculateCalories(newEntryName),
-            date: foodDate
+            date: date
         };
         store.dispatch(addFood(newFood));
         input.value = '';
@@ -51,7 +45,7 @@ var FoodEntry = React.createClass({
 
     render: function() {
         return (
-            RCE('li', { key: this.props.index },
+            RCE('li', {},
                 RCE('span', {}, this.props.entry ),
                 RCE('span', {
                     className: 'u-pull-right remove-food',
@@ -125,18 +119,12 @@ var FoodRemaining = React.createClass({
 
 var DayFoodSum = React.createClass({
     render: function() {
-        var dt = new Date();
-        var currentDate = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
-        var dateString = '' +
-            (currentDate.getMonth() + 1) + '/' +
-            currentDate.getDate() + '/' +
-            currentDate.getFullYear();
-
-        var foods = getFoodsByDate(this.props.foods, currentDate.getTime());
+        var date = moment().format('MM/DD/YYYY');
+        var foods = getFoodsByDate(this.props.foods, date);
         return (
             RCE('ul', {}, 
                 RCE('li', {},
-                    RCE('span', {}, dateString + ' ... '),
+                    RCE('span', {}, date + ' ... '),
                     RCE('strong', {}, foodTotal(foods))
                )
             )

@@ -25,6 +25,9 @@ var root = React.createClass({
                 RCE('div', { className: 'six columns' },
                     RCE(FoodList, store.getState()),
                     RCE(FoodInput, {})
+                ),
+                RCE('div', { className: 'five columns' },
+                    RCE(DayFoodSum, store.getState())
                 )
             )
         );
