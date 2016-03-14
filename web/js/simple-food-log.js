@@ -7,34 +7,29 @@ var root = React.createClass({
         return true;
     },
     render: function() {
+        var todaysFoods = store.getState().foods.filter(function(element) {
+            return element.date == moment().format('MM/DD/YYYY');
+        });
+        var todaysTotal = foodTotal(todaysFoods);
         return RCE('div', { className: 'container'},
             RCE('h1', {}, 'SimpleFoodLog (working)'),
             RCE('div', { className: 'row' },
                 RCE('div', { className: 'u-full-width u-cf' },
                     RCE('div', { className: 'four columns' },
-                        RCE(FoodTotal, {
-                            total: foodTotal(store.getState().foods)
-                        })
+                        RCE(FoodTotal, { total: todaysTotal })
                     ),
                     RCE('div', { className: 'four columns' },
-                        RCE(FoodRemaining, {
-                            total: foodTotal(store.getState().foods)
-                        })
+                        RCE(FoodRemaining, { total: todaysTotal })
                     )
                 ),
                 RCE('div', { className: 'six columns' },
-                    RCE(FoodList, store.getState()),
+                    RCE(FoodList, { foods: todaysFoods }),
                     RCE(FoodInput, {})
                 ),
                 RCE('div', { className: 'four columns u-pull-right' },
-                    RCE('ul', {}, 
-                        RCE(DayFoodSum, Object.assign({}, store.getState(), {
-                            date: moment().format('MM/DD/YYYY')
-                        })),
-                        RCE(DayFoodSum, Object.assign({}, store.getState(), {
-                            date: moment().subtract(1, 'days').format('MM/DD/YYYY')
-                        }))
-                    )
+                    RCE(FoodSumList, {
+                        dates: makeDateWindow(moment().format('YYYYMMDD'), 7)
+                    })
                 )
             )
         );

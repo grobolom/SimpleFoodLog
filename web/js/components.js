@@ -128,3 +128,18 @@ var DayFoodSum = React.createClass({
         );
     }
 });
+
+var FoodSumList = React.createClass({
+    render: function() {
+        var dates = this.props.dates;
+        return (
+            RCE('ul', {}, dates.map(function(element, index) {
+                return RCE(DayFoodSum, {
+                    foods: store.getState().foods,
+                    date: element,
+                    key: index
+                });
+            }))
+        );
+    }
+});
