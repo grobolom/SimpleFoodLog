@@ -12,7 +12,7 @@ var FoodInput = React.createClass({
         var foodDate = (
             new Date(
                 date.getFullYear(),
-                date.getMonth() + 1,
+                date.getMonth(),
                 date.getDate()
             )).getTime();
         var newFood = {
@@ -118,6 +118,27 @@ var FoodRemaining = React.createClass({
                     this.remaining()
                 ),
                 RCE('span', {}, ' remaining today')
+            )
+        );
+    }
+});
+
+var DayFoodSum = React.createClass({
+    render: function() {
+        var dt = new Date();
+        var currentDate = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
+        var dateString = '' +
+            (currentDate.getMonth() + 1) + '/' +
+            currentDate.getDate() + '/' +
+            currentDate.getFullYear();
+
+        var foods = getFoodsByDate(this.props.foods, currentDate.getTime());
+        return (
+            RCE('ul', {}, 
+                RCE('li', {},
+                    RCE('span', {}, dateString + ' ... '),
+                    RCE('strong', {}, foodTotal(foods))
+               )
             )
         );
     }
