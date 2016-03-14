@@ -22,7 +22,7 @@ var root = React.createClass({
                         })
                     )
                 ),
-                RCE('div', { className: 'four columns' },
+                RCE('div', { className: 'six columns' },
                     RCE(FoodList, store.getState()),
                     RCE(FoodInput, {})
                 )
