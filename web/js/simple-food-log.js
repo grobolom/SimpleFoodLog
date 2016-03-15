@@ -58,7 +58,9 @@ var render = function() {
 // store setup
 
 var oldState = localStorage.getItem('state');
-var initialState = oldState != "undefined" ? JSON.parse(oldState) : { foods: [] };
+var initialState = (oldState && oldState != "undefined") ?
+    JSON.parse(oldState) :
+    { foods: [] };
 
 var store = createStore(sflReducer, initialState);
 var initialIndex = maxIndex(store.getState().foods);

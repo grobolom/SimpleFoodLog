@@ -2,7 +2,7 @@
 // understand more, I will convert to multiple reducers, and combine
 // them using Dan Abramov's method
 
-var sflReducer = function(state = {}, action) {
+var sflReducer = function(state, action) {
     if (action.type === 'ADD_FOOD') {
         var newFoods = state.foods.concat(action.entry);
         return Object.assign({}, state, { foods: newFoods });
