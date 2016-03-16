@@ -35,39 +35,21 @@ var FoodInput = React.createClass({
 });
 
 var FoodEntry = React.createClass({
-    propTypes: {
-        entry: React.PropTypes.string.isRequired,
-    },
-
-    // TODO: move this to an actual entry class
-    getCalories: function(entry) {
-        var re = /(\d+)(?: )?(?:c|cal|kcal|calories)?$/;
-        var stuff = entry.match(re);
-        return stuff[0] ? parseInt(stuff[0]) : 0;
-    },
-
-    // TODO: move this to an actual entry class
-    getFoodName: function(entry) {
-        var re = /(?:\d+)(?: )?(?:c|cal|kcal|calories)?$/;
-        var stuff = entry.match(re);
-        return stuff[0] ? entry.substring(0, entry.length - stuff[0].length - 1) : "";
-    },
-
     handleClick: function() {
-        store.dispatch(removeFood(this.props.index));
+        store.dispatch(removeFood(this.props));
     },
 
     render: function() {
         return (
             RCE('li', {},
-                RCE('span', {}, this.getFoodName(this.props.entry) ),
+                RCE('span', {}, this.props.name ),
                 RCE('span', {
                     className: 'u-pull-right remove-food',
                     onClick: this.handleClick
                 },'-'),
                 RCE('span', {
                     className: 'u-pull-right calories'
-                }, this.getCalories(this.props.entry) )
+                }, this.props.calories )
             )
         );
     }
@@ -78,7 +60,7 @@ var FoodList = React.createClass({
         return (
             RCE('ul', {}, this.props.foods.map(function(food) {
                 var foo = Object.assign({}, food, { key: food.index });
-                return RCE(FoodEntry, foo); 
+                return RCE(FoodEntry, foo);
             }))
         );
     }
@@ -146,11 +128,12 @@ var FoodRemaining = React.createClass({
 
 var DayFoodSum = React.createClass({
     render: function() {
-        var foods = getFoodsByDate(this.props.foods, this.props.date);
+        var total = this.props.total;
+        var date = this.props.date;
         return (
             RCE('li', {},
-                RCE('span', {}, this.props.date + ' ... '),
-                RCE('strong', {}, foodTotal(foods))
+                RCE('span', {}, date + ' ... '),
+                RCE('strong', {}, total)
            )
         );
     }
@@ -158,13 +141,12 @@ var DayFoodSum = React.createClass({
 
 var FoodSumList = React.createClass({
     render: function() {
-        var dates = this.props.dates;
-        var foods = this.props.foods;
+        var log = this.props.log;
         return (
-            RCE('ul', {}, dates.map(function(element, index) {
+            RCE('ul', {}, log.map(function(element, index) {
                 return RCE(DayFoodSum, {
-                    foods: foods,
-                    date: element,
+                    total: element.total,
+                    date: element.date,
                     key: index
                 });
             }))

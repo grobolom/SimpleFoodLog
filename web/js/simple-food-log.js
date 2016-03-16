@@ -7,21 +7,27 @@ var root = React.createClass({
         return true;
     },
     render: function() {
-        var foods = store.getState().foods;
-        var todaysFoods = foods.filter(function(element) {
-            return element.date == moment().format('MM/DD/YYYY');
-        });
+        var log = store.getState().log;
+        var today = moment().format('MM/DD/YYYY');
+        // I'm sensing that log needs to be a class with this behavior extracted
+        var todaysFoods = log[today] ? log[today] : [];
         var lastWeeksDates = makeDateWindow(
             moment().subtract(1, 'days').format('YYYYMMDD'),
             7
         );
         var todaysTotal = foodTotal(todaysFoods);
-        var lastWeeksFoods = foods.filter(function(element) {
-            return lastWeeksDates.indexOf(element.date) >= 0;
+        var lastWeeksLog = [];
+        var lastWeeksFoods = [];
+        lastWeeksDates.forEach(function(element) {
+            var e = log[element] ? log[element] : [];
+            lastWeeksLog.push({ date: element, total: foodTotal(e) });
+            lastWeeksFoods.concat(e);
         });
+
         var weekAverage = Math.round(lastWeeksFoods.reduce(function(previous, current) {
             return previous + current.calories;
         }, 0) / 7);
+
         return RCE('div', { className: 'container'},
             RCE('h1', {}, 'SimpleFoodLog'),
             RCE('div', { className: 'row' },
@@ -42,8 +48,7 @@ var root = React.createClass({
                 ),
                 RCE('div', { className: 'four columns u-pull-right' },
                     RCE(FoodSumList, {
-                        dates: lastWeeksDates,
-                        foods: store.getState().foods
+                        log: lastWeeksLog
                     })
                 )
             )
@@ -63,10 +68,12 @@ var render = function() {
 var oldState = localStorage.getItem('state');
 var initialState = (oldState && oldState != "undefined") ?
     JSON.parse(oldState) :
-    { foods: [] };
+    { log: { dates: [] } };
 
 var store = createStore(sflReducer, initialState);
-var initialIndex = maxIndex(store.getState().foods);
+var today = moment().format('MM/DD/YYYY');
+var todaysFoods = store.getState().log[today];
+var initialIndex = maxIndex(todaysFoods ? todaysFoods : []);
 
 var saveState = function(state) {
     localStorage.setItem('state', JSON.stringify(store.getState()));
