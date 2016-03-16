@@ -39,6 +39,20 @@ var FoodEntry = React.createClass({
         entry: React.PropTypes.string.isRequired,
     },
 
+    // TODO: move this to an actual entry class
+    getCalories: function(entry) {
+        var re = /(\d+)(?: )?(?:c|cal|kcal|calories)?$/;
+        var stuff = entry.match(re);
+        return stuff[0] ? parseInt(stuff[0]) : 0;
+    },
+
+    // TODO: move this to an actual entry class
+    getFoodName: function(entry) {
+        var re = /(?:\d+)(?: )?(?:c|cal|kcal|calories)?$/;
+        var stuff = entry.match(re);
+        return stuff[0] ? entry.substring(0, entry.length - stuff[0].length - 1) : "";
+    },
+
     handleClick: function() {
         store.dispatch(removeFood(this.props.index));
     },
@@ -46,11 +60,14 @@ var FoodEntry = React.createClass({
     render: function() {
         return (
             RCE('li', {},
-                RCE('span', {}, this.props.entry ),
+                RCE('span', {}, this.getFoodName(this.props.entry) ),
                 RCE('span', {
                     className: 'u-pull-right remove-food',
                     onClick: this.handleClick
-                },'-')
+                },'-'),
+                RCE('span', {
+                    className: 'u-pull-right calories'
+                }, this.getCalories(this.props.entry) )
             )
         );
     }

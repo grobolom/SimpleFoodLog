@@ -24,3 +24,10 @@ ul {
 .remove-food:hover {
     background: #FFD9D9;
 }
+
+.food {}
+
+.calories {
+    margin-right: 10px;
+    font-style: italic;
+}
