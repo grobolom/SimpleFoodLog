@@ -41,7 +41,10 @@ var root = React.createClass({
                     RCE(FoodInput, {})
                 ),
                 RCE('div', { className: 'four columns u-pull-right' },
-                    RCE(FoodSumList, { dates: lastWeeksDates })
+                    RCE(FoodSumList, {
+                        dates: lastWeeksDates,
+                        foods: store.getState().foods
+                    })
                 )
             )
         );

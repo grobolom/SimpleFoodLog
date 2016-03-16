@@ -159,10 +159,11 @@ var DayFoodSum = React.createClass({
 var FoodSumList = React.createClass({
     render: function() {
         var dates = this.props.dates;
+        var foods = this.props.foods;
         return (
             RCE('ul', {}, dates.map(function(element, index) {
                 return RCE(DayFoodSum, {
-                    foods: store.getState().foods,
+                    foods: foods,
                     date: element,
                     key: index
                 });
