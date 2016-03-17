@@ -1,6 +1,10 @@
 // I'm going to start with a single, all-encompassing reducer. Once I
 // understand more, I will convert to multiple reducers, and combine
 // them using Dan Abramov's method
+//
+// Also probably reducers don't need to function on the ENTIRE state
+// can compose reducers so each one touches only a certain part of
+// the code, such as the log or whatever
 
 var sflReducer = function(state, action) {
     if (action.type === 'ADD_FOOD') {
