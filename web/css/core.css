@@ -14,6 +14,10 @@ ul {
     color: red;
 }
 
+.strong {
+    font-weight: bold;
+}
+
 .remove-food {
     padding: 0px 7px;
     border: 1px solid #DDD;

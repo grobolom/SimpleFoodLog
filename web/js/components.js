@@ -157,7 +157,9 @@ var FoodSumList = React.createClass({
 var CurrentDate = React.createClass({
     render: function() {
         return (
-            RCE('div', {}, this.props.date)
+            RCE('div', {},
+                RCE('h6', { className: 'strong' }, this.props.date)
+            )
         );
     }
 });
