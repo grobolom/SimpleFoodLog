@@ -28,3 +28,9 @@ var removeFood = function (entry) {
         entry: entry
     }
 };
+
+var resetState = function () {
+    return {
+        type: 'RESET_STATE'
+    }
+};

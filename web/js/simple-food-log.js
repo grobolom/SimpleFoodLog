@@ -75,7 +75,8 @@ var initialState = (oldState && oldState != "undefined") ?
 
 var store = createStore(sflReducer, initialState);
 var today = moment().format('MM/DD/YYYY');
-var todaysFoods = store.getState().log[today];
+var todaysLog = store.getState().log;
+var todaysFoods = todaysLog ? todaysLog[today] : [];
 var initialIndex = maxIndex(todaysFoods ? todaysFoods : []);
 
 var saveState = function(state) {

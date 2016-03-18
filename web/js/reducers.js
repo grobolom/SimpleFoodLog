@@ -30,6 +30,10 @@ var sflReducer = function(state, action) {
         return Object.assign({}, state, { log: newLog });
     }
 
+    if (action.type === 'RESET_STATE') {
+        return { log: { dates: [] } };
+    }
+
     return state;
 };
 
@@ -66,3 +70,14 @@ var nextState = sflReducer(testInitialState, testRemoveFoodAction);
 
 console.assert(_.isEqual(expectedNextState, nextState), 'removes food');
 */
+
+var testInitialState = {
+    log: { dates: ['03/01/2016'] }
+};
+var testResetState = resetState();
+var expectedNextState = {
+    log: { dates: [] }
+};
+var nextState = sflReducer(testInitialState, testResetState);
+
+console.assert(_.isEqual(expectedNextState, nextState), 'resets state');
