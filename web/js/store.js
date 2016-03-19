@@ -1,3 +1,15 @@
+var applyMiddleware = function (store, middlewares) {
+    middlewares = middlewares.slice();
+    middlewares.reverse();
+
+    var dispatch = store.dispatch;
+    middlewares.forEach(function (middleware) {
+        return dispatch = middleware(store)(dispatch);
+    });
+
+    return Object.assign({}, store, { dispatch: dispatch });
+}
+
 var createStore = function (reducer, initialState) {
     var state;
     var observers = [];

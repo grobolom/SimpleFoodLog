@@ -73,7 +73,19 @@ var initialState = (oldState && oldState != "undefined") ?
     JSON.parse(oldState) :
     { log: { dates: [] } };
 
+var loggerMiddleware = function (store) {
+    return function (next) {
+        return function (action) {
+            console.log(action);
+            var result = next(action);
+            return result;
+        };
+    };
+};
+
 var store = createStore(sflReducer, initialState);
+var store = applyMiddleware(store, [loggerMiddleware]);
+
 var today = moment().format('MM/DD/YYYY');
 var todaysLog = store.getState().log;
 var todaysFoods = todaysLog ? todaysLog[today] : [];
