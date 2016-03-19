@@ -15,17 +15,36 @@ var combineReducers = function(reducers) {
         );
     };
 }
+
 var sflReducer = function(state, action) {
+    // looks like our todo action reducer is getting a bit too long. what
+    // should we do next to refactor this and extract some of this into
+    // code that is more clear? what objects should have these methods?
     if (action.type === 'ADD_FOOD') {
         var foodDate = action.entry.date;
         var newLog = state.log;
+        var entry= action.entry;
 
         if (newLog.dates.indexOf(foodDate) < 0) {
             newLog[foodDate] = [];
             newLog.dates = newLog.dates.concat(foodDate);
         }
 
-        newLog[foodDate] = newLog[foodDate].concat(action.entry);
+        var re = /(?:\d+)(?: )?(?:c|cal|kcal|calories)?$/
+        var line = entry.entry;
+        var match = line.match(re);
+
+        // todo: there has to be a better way to do this!
+        var matchCalories = match ? match[0] : 0;
+        var matchCaloriesLength = matchCalories ? matchCalories.length : 0;
+        var name = line.substring(0, line.length - matchCaloriesLength).trim();
+
+        var e = Object.assign({}, entry, {
+            name: name,
+            calories: matchCalories
+        });
+
+        newLog[foodDate] = newLog[foodDate].concat(e);
         return Object.assign({}, state, { log: newLog });
     }
 
