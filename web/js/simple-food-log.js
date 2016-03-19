@@ -71,7 +71,10 @@ var render = function() {
 var oldState = localStorage.getItem('state');
 var initialState = (oldState && oldState != "undefined") ?
     JSON.parse(oldState) :
-    { log: { dates: [] } };
+    {
+        initialIndex: 0,
+        log: { dates: [] }
+    };
 
 var loggerMiddleware = function (store) {
     return function (next) {
@@ -89,7 +92,9 @@ var store = applyMiddleware(store, [loggerMiddleware]);
 var today = moment().format('MM/DD/YYYY');
 var todaysLog = store.getState().log;
 var todaysFoods = todaysLog ? todaysLog[today] : [];
-var initialIndex = maxIndex(todaysFoods ? todaysFoods : []);
+
+var maxIndex = maxIndex(todaysFoods ? todaysFoods : []);
+var initialIndex = store.getState().initialIndex ? store.getState().initialIndex : maxIndex;
 
 var saveState = function(state) {
     localStorage.setItem('state', JSON.stringify(store.getState()));
