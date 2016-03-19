@@ -1,11 +1,20 @@
-// I'm going to start with a single, all-encompassing reducer. Once I
-// understand more, I will convert to multiple reducers, and combine
-// them using Dan Abramov's method
-//
-// Also probably reducers don't need to function on the ENTIRE state
-// can compose reducers so each one touches only a certain part of
-// the code, such as the log or whatever
+// very cool but fairly simple. Just walk across the 'array' of passed reducers
+// and call the current reducer with the current state and action
 
+var combineReducers = function(reducers) {
+    return function (state, action) {
+        return Object.keys(reducers).reduce(
+            function (nextState, key) {
+                nextState[key] = reducers[key](
+                    state[key],
+                    action
+                );
+                return nextState;
+            },
+            {}
+        );
+    };
+}
 var sflReducer = function(state, action) {
     if (action.type === 'ADD_FOOD') {
         var foodDate = action.entry.date;
