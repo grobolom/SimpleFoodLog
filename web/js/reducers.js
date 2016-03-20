@@ -21,9 +21,9 @@ var sflReducer = function(state, action) {
     // should we do next to refactor this and extract some of this into
     // code that is more clear? what objects should have these methods?
     if (action.type === 'ADD_FOOD') {
-        var foodDate = action.entry.date;
+        var foodDate = state.selectedDate; //action.entry.date;
         var newLog = state.log;
-        var entry= action.entry;
+        var entry = action.entry;
 
         if (newLog.dates.indexOf(foodDate) < 0) {
             newLog[foodDate] = [];
