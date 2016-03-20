@@ -17,3 +17,10 @@ var resetState = function () {
         type: 'RESET_STATE'
     }
 };
+
+var selectDate = function (date) {
+    return {
+        type: 'SELECT_DATE',
+        date: date
+    }
+};
