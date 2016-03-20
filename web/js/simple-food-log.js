@@ -8,7 +8,8 @@ var root = React.createClass({
     },
     render: function() {
         var log = store.getState().log;
-        var today = moment().format('MM/DD/YYYY');
+        var selectedDate = store.getState().selectedDate;
+        var today = selectedDate ? selectedDate : moment().format('MM/DD/YYYY');
         // I'm sensing that log needs to be a class with this behavior extracted
         var todaysFoods = log[today] ? log[today] : [];
         var lastWeeksDates = makeDateWindow(
