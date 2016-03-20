@@ -66,14 +66,6 @@ var sflReducer = function(state, action) {
 };
 
 // tests
-/*
-var testInitialState = { foods: [] };
-var testAddFoodAction = addFood({ index : '1', entry: 'Bacon 200'});
-var expectedNextState = { foods: [{ index : '1', entry: 'Bacon 200'}] };
-var nextState = sflReducer(testInitialState, testAddFoodAction);
-
-console.assert(_.isEqual(expectedNextState, nextState), 'adds food');
-*/
 var testInitialState = {
     log: { dates: [] }
 };
@@ -89,15 +81,6 @@ var expectedNextState = {
 var nextState = sflReducer(testInitialState, testAddFoodAction);
 
 console.assert(_.isEqual(expectedNextState, nextState), 'adds food log');
-
-/*
-var testInitialState = { foods: [{ index: '2'}] };
-var testRemoveFoodAction = removeFood('2');
-var expectedNextState = { foods: [] };
-var nextState = sflReducer(testInitialState, testRemoveFoodAction);
-
-console.assert(_.isEqual(expectedNextState, nextState), 'removes food');
-*/
 
 var testInitialState = {
     log: { dates: ['03/01/2016'] }
