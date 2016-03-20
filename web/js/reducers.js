@@ -62,6 +62,10 @@ var sflReducer = function(state, action) {
         return { log: { dates: [] } };
     }
 
+    if (action.type === 'SELECT_DATE') {
+        return Object.assign({}, state, { selectedDate: action.date });
+    }
+
     return state;
 };
 
