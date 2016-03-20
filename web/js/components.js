@@ -127,12 +127,17 @@ var FoodRemaining = React.createClass({
 });
 
 var DayFoodSum = React.createClass({
+    handleClick : function() {
+        store.dispatch(selectDate(this.props.date));
+    },
     render: function() {
         var total = this.props.total;
         var date = this.props.date;
         return (
             RCE('li', {},
-                RCE('span', {}, date + ' ... '),
+                RCE('span', {
+                    onClick: this.handleClick
+                }, date + ' ... '),
                 RCE('strong', {}, total)
            )
         );
