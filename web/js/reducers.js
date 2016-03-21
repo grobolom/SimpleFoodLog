@@ -49,7 +49,7 @@ var sflReducer = function(state, action) {
     }
 
     if (action.type === 'REMOVE_FOOD') {
-        var date = action.entry.date;
+        var date = state.selectedDate;
         var newFoods = state.log[date].filter(function (element) {
             return element.index != action.entry.index;
         });
