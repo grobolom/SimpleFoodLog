@@ -120,7 +120,7 @@ var FoodRemaining = React.createClass({
                     { className: this.getStatus() },
                     this.remaining()
                 ),
-                RCE('span', {}, ' remaining today')
+                RCE('span', {}, ' remaining')
             )
         );
     }
