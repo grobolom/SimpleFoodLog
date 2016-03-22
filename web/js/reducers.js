@@ -27,8 +27,8 @@ var sflReducer = function(state, action) {
 
         if (newLog.dates.indexOf(foodDate) < 0) {
             newLog[foodDate] = [];
-            newLog.dates = newLog.dates.concat(foodDate);
         }
+        newLog.dates = newLog.dates.concat(foodDate);
 
         var re = /(?:\d+)(?: )?(?:c|cal|kcal|calories)?$/
         var line = entry.entry;

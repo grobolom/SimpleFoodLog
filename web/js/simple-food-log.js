@@ -13,7 +13,7 @@ var root = React.createClass({
         // I'm sensing that log needs to be a class with this behavior extracted
         var todaysFoods = log[today] ? log[today] : [];
         var lastWeeksDates = makeDateWindow(
-            moment().subtract(1, 'days').format('YYYYMMDD'),
+            moment().subtract(0, 'days').format('YYYYMMDD'),
             7
         );
         var todaysTotal = foodTotal(todaysFoods);
@@ -74,6 +74,7 @@ var initialState = (oldState && oldState != "undefined") ?
     JSON.parse(oldState) :
     {
         initialIndex: 0,
+        selectedDate: moment().format('MM/DD/YYYY'),
         log: { dates: [] }
     };
 
