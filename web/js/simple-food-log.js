@@ -22,11 +22,11 @@ var root = React.createClass({
         lastWeeksDates.forEach(function(element) {
             var e = log[element] ? log[element] : [];
             lastWeeksLog.push({ date: element, total: foodTotal(e) });
-            lastWeeksFoods.concat(e);
+            lastWeeksFoods = lastWeeksFoods.concat(e);
         });
 
         var weekAverage = Math.round(lastWeeksFoods.reduce(function(previous, current) {
-            return previous + current.calories;
+            return previous + Number.parseInt(current.calories);
         }, 0) / 7);
 
         return RCE('div', { className: 'container'},
