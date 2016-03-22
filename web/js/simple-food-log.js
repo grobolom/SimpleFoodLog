@@ -43,16 +43,14 @@ var root = React.createClass({
                         RCE(FoodRemaining, { total: todaysTotal })
                     )
                 ),
-                RCE('div', { className: 'u-full-width u-cf' },
-                    RCE(CurrentDate, { date: today })
-                ),
                 RCE('div', { className: 'six columns' },
                     RCE(FoodList, { foods: todaysFoods }),
                     RCE(FoodInput, {})
                 ),
                 RCE('div', { className: 'four columns u-pull-right' },
                     RCE(FoodSumList, {
-                        log: lastWeeksLog
+                        log: lastWeeksLog,
+                        selectedDate: today
                     })
                 )
             )

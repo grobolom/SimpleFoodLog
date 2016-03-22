@@ -14,6 +14,11 @@ ul {
     color: red;
 }
 
+.selected {
+    color: blue;
+    font-weight: bold;
+}
+
 .strong {
     font-weight: bold;
 }

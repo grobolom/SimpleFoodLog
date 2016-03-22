@@ -133,10 +133,12 @@ var DayFoodSum = React.createClass({
     render: function() {
         var total = this.props.total;
         var date = this.props.date;
+        var className = this.props.selected ? 'selected' : '';
         return (
             RCE('li', {},
                 RCE('span', {
-                    onClick: this.handleClick
+                    onClick: this.handleClick,
+                    className: className
                 }, date + ' ... '),
                 RCE('strong', {}, total)
            )
@@ -147,11 +149,13 @@ var DayFoodSum = React.createClass({
 var FoodSumList = React.createClass({
     render: function() {
         var log = this.props.log;
+        var selected = this.props.selectedDate;
         return (
             RCE('ul', {}, log.map(function(element, index) {
                 return RCE(DayFoodSum, {
                     total: element.total,
                     date: element.date,
+                    selected: selected === element.date,
                     key: index
                 });
             }))
