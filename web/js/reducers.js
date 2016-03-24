@@ -38,13 +38,14 @@ var sflReducer = function(state, action) {
         var matchCalories = match ? match[0] : 0;
         var matchCaloriesLength = matchCalories ? matchCalories.length : 0;
         var name = line.substring(0, line.length - matchCaloriesLength).trim();
+        var nextIndex = state.initialIndex + 1;
 
         var e = Object.assign({}, entry, {
             name: name,
-            calories: matchCalories
+            calories: matchCalories,
+            index: nextIndex,
         });
 
-        var nextIndex = state.initialIndex + 1;
 
         newLog[foodDate] = newLog[foodDate].concat(e);
         return Object.assign({}, state, {
