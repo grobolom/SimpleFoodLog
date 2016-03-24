@@ -9,7 +9,7 @@ var FoodSumList = React.createClass({
                 selected: this.props.selectedDate === element.date,
                 key: index
             });
-        });
+        }, this);
         return React.createElement(
             'ul',
             null,
