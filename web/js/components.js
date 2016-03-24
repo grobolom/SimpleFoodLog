@@ -86,7 +86,7 @@ var FoodAverage = React.createClass({
         return (
             RCE('h5', {},
                 RCE('strong', {}, this.props.average),
-                RCE('span', {}, ' average calories')
+                RCE('span', {}, ' average')
             )
         );
     }
