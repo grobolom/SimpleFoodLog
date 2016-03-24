@@ -44,8 +44,13 @@ var sflReducer = function(state, action) {
             calories: matchCalories
         });
 
+        var nextIndex = state.initialIndex + 1;
+
         newLog[foodDate] = newLog[foodDate].concat(e);
-        return Object.assign({}, state, { log: newLog });
+        return Object.assign({}, state, {
+            log: newLog,
+            initialIndex: nextIndex
+        });
     }
 
     if (action.type === 'REMOVE_FOOD') {
