@@ -45,7 +45,7 @@ var root = React.createClass({
                 ),
                 RCE('div', { className: 'six columns' },
                     RCE(FoodList, { foods: todaysFoods }),
-                    RCE(FoodInput, {})
+                    RCE(FoodInputContainer, {})
                 ),
                 RCE('div', { className: 'four columns u-pull-right' },
                     RCE(FoodSumList, {

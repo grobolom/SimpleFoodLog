@@ -2,20 +2,21 @@
 
 RCE = React.createComponent;
 
-var FoodInput = React.createClass({
+var FoodInputContainer = React.createClass({
     handleSubmit: function(event) {
         event.preventDefault();
         input = event.target.children[0];
-        
-        var newEntryName = input.value;
-        var newFood = {
-            entry: newEntryName,
-        };
-        store.dispatch(addFood(newFood));
+        store.dispatch(addFood({ entry: input.value }));
         input.value = '';
     },
     render: function() {
-        return RCE('form', { onSubmit: this.handleSubmit },
+        return RCE(FoodInput, { handleSubmit: this.handleSubmit });
+    },
+});
+
+var FoodInput = React.createClass({
+    render: function() {
+        return RCE('form', { onSubmit: this.props.handleSubmit },
             RCE('input', {
                 type: 'text',
                 className: 'u-full-width',
