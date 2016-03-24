@@ -1,2 +1,3 @@
 /web/js/react*
 .idea
+node_modules
