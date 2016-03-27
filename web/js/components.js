@@ -46,6 +46,17 @@ var DayFoodSum = React.createClass({
     handleClick : function() {
         store.dispatch(selectDate(this.props.date));
     },
+
+    getStatus: function() {
+        var remaining = this.props.calorieGoal - parseInt(this.props.total);
+        if (remaining > 200) {
+            return 'good';
+        } else if (remaining <= 0) {
+            return 'bad';
+        }
+        return '';
+    },
+
     render: function() {
         var total = this.props.total;
         var date = this.props.date;
@@ -56,8 +67,10 @@ var DayFoodSum = React.createClass({
                     onClick: this.handleClick,
                     className: className
                 }, date + ' ... '),
-                RCE('strong', {}, total)
-           )
+                RCE('strong', {
+                    className: this.getStatus()
+                }, total)
+            )
         );
     }
 });

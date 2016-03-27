@@ -56,7 +56,8 @@ var root = React.createClass({
                 RCE('div', { className: 'four columns u-pull-right' },
                     RCE(FoodSumList, {
                         log: lastWeeksLog,
-                        selectedDate: today
+                        selectedDate: today,
+                        calorieGoal: calorieGoal
                     })
                 )
             )

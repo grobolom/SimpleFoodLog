@@ -5,6 +5,7 @@ var FoodSumList = React.createClass({
                 total = {element.total}
                 date = {element.date}
                 selected = {this.props.selectedDate === element.date}
+                calorieGoal = {this.props.calorieGoal}
                 key = {index}
             />
         }, this);
