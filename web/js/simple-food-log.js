@@ -40,7 +40,8 @@ var root = React.createClass({
                         RCE(FoodAverage, { average: weekAverage })
                     ),
                     RCE('div', { className: 'four columns' },
-                        RCE(FoodRemaining, { total: todaysTotal })
+                        RCE(FoodRemaining, { total: todaysTotal }),
+                        RCE(TotalSelector, { calorieGoal: '1600' })
                     )
                 ),
                 RCE('div', { className: 'six columns' },

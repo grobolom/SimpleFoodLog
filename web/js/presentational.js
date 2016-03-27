@@ -129,6 +129,26 @@ var FoodInput = React.createClass({
     }
 });
 
+var TotalSelector = React.createClass({
+    displayName: 'TotalSelector',
+
+    render: function () {
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'h6',
+                null,
+                'Daily Calorie Goal:'
+            ),
+            React.createElement('input', {
+                type: 'text',
+                value: this.props.calorieGoal
+            })
+        );
+    }
+});
+
 var FoodAverage = React.createClass({
     displayName: 'FoodAverage',
 

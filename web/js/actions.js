@@ -24,3 +24,10 @@ var selectDate = function (date) {
         date: date
     }
 };
+
+var setCalorieGoal = function (amount) {
+    return {
+        type: 'SET_CALORIE_GOAL',
+        amount: amount
+    }
+};
