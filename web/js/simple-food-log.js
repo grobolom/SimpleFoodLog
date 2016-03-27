@@ -45,10 +45,16 @@ var root = React.createClass({
                         RCE(FoodRemaining, {
                             total: todaysTotal,
                             calorieGoal: calorieGoal
-                        }),
-                        RCE(TotalSelector, { calorieGoal: calorieGoal })
+                        })
                     )
                 ),
+                RCE('hr'),
+                RCE('div', { className: 'u-full-width u-cf' },
+                    RCE('div', { className: 'twelve columns' },
+                        RCE(TotalSelector, { calorieGoal: calorieGoal })
+                   )
+                ),
+                RCE('hr'),
                 RCE('div', { className: 'six columns' },
                     RCE(FoodList, { foods: todaysFoods }),
                     RCE(FoodInputContainer, {})

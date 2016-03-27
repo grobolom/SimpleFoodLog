@@ -99,7 +99,7 @@ var TotalSelector = React.createClass({
     render: function() {
         return (
             <div>
-                <h6>Daily Calorie Goal:</h6>
+                <div>Daily Calorie Goal:</div>
                 <input
                     type='text'
                     defaultValue={this.props.calorieGoal}

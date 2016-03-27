@@ -141,7 +141,7 @@ var TotalSelector = React.createClass({
             'div',
             null,
             React.createElement(
-                'h6',
+                'div',
                 null,
                 'Daily Calorie Goal:'
             ),
