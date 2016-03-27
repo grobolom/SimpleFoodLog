@@ -7,6 +7,8 @@ var root = React.createClass({
         return true;
     },
     render: function() {
+        var calorieGoal = store.getState().calorieGoal ? store.getState().calorieGoal : 1600;
+
         var log = store.getState().log;
         var selectedDate = store.getState().selectedDate;
         var today = selectedDate ? selectedDate : moment().format('MM/DD/YYYY');
@@ -40,8 +42,11 @@ var root = React.createClass({
                         RCE(FoodAverage, { average: weekAverage })
                     ),
                     RCE('div', { className: 'four columns' },
-                        RCE(FoodRemaining, { total: todaysTotal }),
-                        RCE(TotalSelector, { calorieGoal: '1600' })
+                        RCE(FoodRemaining, {
+                            total: todaysTotal,
+                            calorieGoal: calorieGoal
+                        }),
+                        RCE(TotalSelector, { calorieGoal: calorieGoal })
                     )
                 ),
                 RCE('div', { className: 'six columns' },

@@ -18,7 +18,7 @@ var FoodRemaining = React.createClass({
     },
 
     remaining: function() {
-        var remaining = 1600 - parseInt(this.props.total);
+        var remaining = this.props.calorieGoal - parseInt(this.props.total);
         return remaining > 0 ? remaining : 0;
     },
 
@@ -92,13 +92,17 @@ var FoodInput = React.createClass({
 });
 
 var TotalSelector = React.createClass({
+    handleChange: function(event) {
+        store.dispatch(setCalorieGoal(event.target.value));
+    },
     render: function() {
         return (
             <div>
                 <h6>Daily Calorie Goal:</h6>
                 <input
                     type='text'
-                    value={this.props.calorieGoal}
+                    defaultValue={this.props.calorieGoal}
+                    onChange={this.handleChange}
                 />
             </div>
         );

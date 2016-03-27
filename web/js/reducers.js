@@ -72,6 +72,11 @@ var sflReducer = function(state, action) {
         return Object.assign({}, state, { selectedDate: action.date });
     }
 
+    if (action.type === 'SET_CALORIE_GOAL') {
+        var amount = Number.parseInt(action.amount);
+        return Object.assign({}, state, { calorieGoal: amount });
+    }
+
     return state;
 };
 
