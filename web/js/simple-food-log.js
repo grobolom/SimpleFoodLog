@@ -31,43 +31,14 @@ var root = React.createClass({
             return previous + Number.parseInt(current.calories);
         }, 0) / 7);
 
-        return RCE('div', { className: 'container'},
-            RCE('h1', {}, 'SimpleFoodLog'),
-            RCE('div', { className: 'row' },
-                RCE('div', { className: 'u-full-width u-cf' },
-                    RCE('div', { className: 'four columns' },
-                        RCE(FoodTotal, { total: todaysTotal })
-                    ),
-                    RCE('div', { className: 'four columns' },
-                        RCE(FoodAverage, { average: weekAverage })
-                    ),
-                    RCE('div', { className: 'four columns' },
-                        RCE(FoodRemaining, {
-                            total: todaysTotal,
-                            calorieGoal: calorieGoal
-                        })
-                    )
-                ),
-                RCE('hr'),
-                RCE('div', { className: 'u-full-width u-cf' },
-                    RCE('div', { className: 'twelve columns' },
-                        RCE(TotalSelector, { calorieGoal: calorieGoal })
-                   )
-                ),
-                RCE('hr'),
-                RCE('div', { className: 'six columns' },
-                    RCE(FoodList, { foods: todaysFoods }),
-                    RCE(FoodInputContainer, {})
-                ),
-                RCE('div', { className: 'four columns u-pull-right' },
-                    RCE(FoodSumList, {
-                        log: lastWeeksLog,
-                        selectedDate: today,
-                        calorieGoal: calorieGoal
-                    })
-                )
-            )
-        );
+        return RCE(SimpleFoodLog, {
+            todaysTotal,
+            weekAverage,
+            calorieGoal,
+            todaysFoods,
+            lastWeeksLog,
+            today
+        });
     }
 });
 
