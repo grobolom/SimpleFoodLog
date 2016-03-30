@@ -62,13 +62,12 @@ var DayFoodSum = React.createClass({
         var date = this.props.date;
         var className = this.props.selected ? 'selected' : '';
         return (
-            RCE('li', {},
+            RCE('li', { className: className },
                 RCE('span', {
                     onClick: this.handleClick,
-                    className: className
-                }, date + ' ... '),
+                }, date + ''),
                 RCE('strong', {
-                    className: this.getStatus()
+                    className: this.getStatus() + ' u-pull-right'
                 }, total)
             )
         );

@@ -15,54 +15,37 @@ var SimpleFoodLog = React.createClass({
                 { className: 'row' },
                 React.createElement(
                     'div',
-                    { className: 'u-full-width u-cf' },
-                    React.createElement(
-                        'div',
-                        { className: 'four columns' },
-                        React.createElement(FoodTotal, {
-                            total: this.props.todaysTotal
-                        })
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'four columns' },
-                        React.createElement(FoodAverage, {
-                            average: this.props.weekAverage
-                        })
-                    ),
-                    React.createElement(
-                        'div',
-                        { className: 'four columns' },
-                        React.createElement(FoodRemaining, {
-                            total: this.props.todaysTotal,
-                            calorieGoal: this.props.calorieGoal
-                        })
-                    )
-                ),
-                React.createElement('hr', null),
-                React.createElement(
-                    'div',
-                    { className: 'u-full-width u-cf' },
-                    React.createElement(
-                        'div',
-                        { className: 'twelve columns' },
-                        React.createElement(TotalSelector, {
-                            calorieGoal: this.props.calorieGoal
-                        })
-                    )
-                ),
-                React.createElement('hr', null),
-                React.createElement(
-                    'div',
                     { className: 'six columns' },
+                    React.createElement(FoodTotal, {
+                        total: this.props.todaysTotal
+                    }),
+                    React.createElement(FoodInputContainer, null),
                     React.createElement(FoodList, {
                         foods: this.props.todaysFoods
                     }),
-                    React.createElement(FoodInputContainer, null)
+                    React.createElement('hr', null)
                 ),
                 React.createElement(
                     'div',
-                    { className: 'four columns u-pull-right' },
+                    { className: 'six columns' },
+                    React.createElement(FoodAverage, {
+                        average: this.props.weekAverage
+                    }),
+                    React.createElement(FoodRemaining, {
+                        total: this.props.todaysTotal,
+                        calorieGoal: this.props.calorieGoal
+                    }),
+                    React.createElement(
+                        'form',
+                        null,
+                        React.createElement(TotalSelector, {
+                            calorieGoal: this.props.calorieGoal
+                        }),
+                        React.createElement('input', {
+                            type: 'submit',
+                            className: 'button-primary',
+                            value: 'Daily Calorie Goal' })
+                    ),
                     React.createElement(FoodSumList, {
                         log: this.props.lastWeeksLog,
                         selectedDate: this.props.today,

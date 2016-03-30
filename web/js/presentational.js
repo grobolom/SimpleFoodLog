@@ -19,46 +19,6 @@ var FoodSumList = React.createClass({
     }
 });
 
-var FoodRemaining = React.createClass({
-    displayName: 'FoodRemaining',
-
-    propTypes: {
-        remaining: React.PropTypes.number
-    },
-
-    remaining: function () {
-        var remaining = this.props.calorieGoal - parseInt(this.props.total);
-        return remaining > 0 ? remaining : 0;
-    },
-
-    getStatus: function () {
-        var remaining = this.remaining();
-        if (remaining > 200) {
-            return 'good';
-        } else if (remaining <= 0) {
-            return 'bad';
-        }
-        return '';
-    },
-
-    render: function () {
-        return React.createElement(
-            'h5',
-            null,
-            React.createElement(
-                'strong',
-                { className: this.getStatus() },
-                this.remaining()
-            ),
-            React.createElement(
-                'span',
-                null,
-                ' remaining'
-            )
-        );
-    }
-});
-
 var FoodTotal = React.createClass({
     displayName: 'FoodTotal',
 
@@ -74,7 +34,7 @@ var FoodTotal = React.createClass({
             React.createElement(
                 'span',
                 null,
-                ' total calories'
+                ' total'
             )
         );
     }
@@ -140,13 +100,9 @@ var TotalSelector = React.createClass({
         return React.createElement(
             'div',
             null,
-            React.createElement(
-                'div',
-                null,
-                'Daily Calorie Goal:'
-            ),
             React.createElement('input', {
                 type: 'text',
+                className: 'u-full-width',
                 defaultValue: this.props.calorieGoal,
                 onChange: this.handleChange
             })
@@ -160,7 +116,7 @@ var FoodAverage = React.createClass({
     render: function () {
         return React.createElement(
             'h5',
-            null,
+            { className: 'six columns' },
             React.createElement(
                 'strong',
                 null,
@@ -170,6 +126,46 @@ var FoodAverage = React.createClass({
                 'span',
                 null,
                 ' average'
+            )
+        );
+    }
+});
+
+var FoodRemaining = React.createClass({
+    displayName: 'FoodRemaining',
+
+    propTypes: {
+        remaining: React.PropTypes.number
+    },
+
+    remaining: function () {
+        var remaining = this.props.calorieGoal - parseInt(this.props.total);
+        return remaining > 0 ? remaining : 0;
+    },
+
+    getStatus: function () {
+        var remaining = this.remaining();
+        if (remaining > 200) {
+            return 'good';
+        } else if (remaining <= 0) {
+            return 'bad';
+        }
+        return '';
+    },
+
+    render: function () {
+        return React.createElement(
+            'h5',
+            { className: 'six columns' },
+            React.createElement(
+                'strong',
+                { className: this.getStatus() },
+                this.remaining()
+            ),
+            React.createElement(
+                'span',
+                null,
+                ' remaining'
             )
         );
     }

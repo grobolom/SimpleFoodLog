@@ -13,42 +13,12 @@ var FoodSumList = React.createClass({
     }
 });
 
-var FoodRemaining = React.createClass({
-    propTypes: {
-        remaining: React.PropTypes.number
-    },
-
-    remaining: function() {
-        var remaining = this.props.calorieGoal - parseInt(this.props.total);
-        return remaining > 0 ? remaining : 0;
-    },
-
-    getStatus: function() {
-        var remaining = this.remaining();
-        if (remaining > 200) {
-            return 'good';
-        } else if (remaining <= 0) {
-            return 'bad';
-        }
-        return '';
-    },
-
-    render: function() {
-        return (
-            <h5>
-                <strong className = {this.getStatus()}>{ this.remaining() }</strong>
-                <span> remaining</span>
-            </h5>
-        );
-    }
-});
-
 var FoodTotal = React.createClass({
     render: function() {
         return (
             <h5>
                 <strong>{ this.props.total }</strong>
-                <span> total calories</span>
+                <span> total</span>
             </h5>
         );
     }
@@ -99,9 +69,9 @@ var TotalSelector = React.createClass({
     render: function() {
         return (
             <div>
-                <div>Daily Calorie Goal:</div>
                 <input
                     type='text'
+                    className='u-full-width'
                     defaultValue={this.props.calorieGoal}
                     onChange={this.handleChange}
                 />
@@ -113,9 +83,39 @@ var TotalSelector = React.createClass({
 var FoodAverage = React.createClass({
     render: function() {
         return (
-            <h5>
+            <h5 className='six columns'>
                 <strong>{ this.props.average }</strong>
                 <span> average</span>
+            </h5>
+        );
+    }
+});
+
+var FoodRemaining = React.createClass({
+    propTypes: {
+        remaining: React.PropTypes.number
+    },
+
+    remaining: function() {
+        var remaining = this.props.calorieGoal - parseInt(this.props.total);
+        return remaining > 0 ? remaining : 0;
+    },
+
+    getStatus: function() {
+        var remaining = this.remaining();
+        if (remaining > 200) {
+            return 'good';
+        } else if (remaining <= 0) {
+            return 'bad';
+        }
+        return '';
+    },
+
+    render: function() {
+        return (
+            <h5 className='six columns'>
+                <strong className = {this.getStatus()}>{ this.remaining() }</strong>
+                <span> remaining</span>
             </h5>
         );
     }

@@ -15,6 +15,10 @@ ul {
 }
 
 .selected {
+    background: #F0F0F0;
+}
+
+.selected span {
     color: blue;
     font-weight: bold;
 }
