@@ -8,6 +8,7 @@ var FoodInputContainer = React.createClass({
         input = event.target.children[0];
         store.dispatch(addFood({ entry: input.value }));
         input.value = '';
+        input.focus();
     },
     render: function() {
         return RCE(FoodInput, { handleSubmit: this.handleSubmit });
