@@ -1,3 +1,13 @@
+/*
+import FoodTotal from './components/presentational/FoodTotal'
+import FoodInputContainer from './components/presentational/FoodInputContainer'
+import FoodList from './components/presentational/FoodList'
+import FoodAverage from './components/presentational/FoodAverage'
+import FoodRemaining from './components/presentational/FoodRemaining'
+import TotalSelector from './components/presentational/TotalSelector'
+import FoodSumList from './components/presentational/FoodSumList'
+*/
+
 var SimpleFoodLog = React.createClass({
     displayName: 'SimpleFoodLog',
 
