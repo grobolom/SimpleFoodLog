@@ -3,7 +3,7 @@ var FoodSumList = React.createClass({
 
     render: function () {
         var sums = this.props.log.map(function (element, index) {
-            return React.createElement(DayFoodSum, {
+            return React.createElement(FoodSum, {
                 total: element.total,
                 date: element.date,
                 selected: this.props.selectedDate === element.date,
