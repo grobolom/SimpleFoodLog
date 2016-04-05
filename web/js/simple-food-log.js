@@ -47,6 +47,7 @@ var rooter = React.createClass({
         return true;
     },
     render: function() {
+        var store = this.props.store;
         var calorieGoal = store.getState().calorieGoal ? store.getState().calorieGoal : 1600;
 
         var log = store.getState().log;
@@ -84,7 +85,7 @@ var rooter = React.createClass({
 
 var ren = function() {
     ReactDOM.render(
-        React.createElement(rooter),
+        React.createElement(rooter, { store: store }),
         document.getElementById('react-app')
     );
 };
