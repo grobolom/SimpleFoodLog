@@ -3,9 +3,46 @@ import { createStore, applyMiddleware } from './store.js';
 import { combineReducers, sflReducer } from './reducers.js';
 import SimpleFoodLog from './app.js';
 
+// store setup
+
+var oldState = localStorage.getItem('state');
+var initialState = (oldState && oldState != "undefined") ?
+    JSON.parse(oldState) :
+    {
+        initialIndex: 0,
+        selectedDate: moment().format('MM/DD/YYYY'),
+        log: { dates: [] }
+    };
+
+var loggerMiddleware = function (store) {
+    return function (next) {
+        return function (action) {
+            console.log(action);
+            var result = next(action);
+            return result;
+        };
+    };
+};
+
+var store = createStore(sflReducer, initialState);
+var store = applyMiddleware(store, [loggerMiddleware]);
+
+var today = moment().format('MM/DD/YYYY');
+var todaysLog = store.getState().log;
+var todaysFoods = todaysLog ? todaysLog[today] : [];
+
+var mi = maxIndex(todaysFoods ? todaysFoods : []);
+var initialIndex = store.getState().initialIndex ? store.getState().initialIndex : mi;
+
+var saveState = function(state) {
+    localStorage.setItem('state', JSON.stringify(store.getState()));
+};
+
+// other stuff
+
 var RCE = React.createElement;
 
-var root = React.createClass({
+var rooter = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
         return true;
     },
@@ -45,51 +82,13 @@ var root = React.createClass({
     }
 });
 
-var render = function() {
+var ren = function() {
     ReactDOM.render(
-        RCE(root),
+        React.createElement(rooter),
         document.getElementById('react-app')
     );
 };
-
-// store setup
-
-var oldState = localStorage.getItem('state');
-var initialState = (oldState && oldState != "undefined") ?
-    JSON.parse(oldState) :
-    {
-        initialIndex: 0,
-        selectedDate: moment().format('MM/DD/YYYY'),
-        log: { dates: [] }
-    };
-
-var loggerMiddleware = function (store) {
-    return function (next) {
-        return function (action) {
-            console.log(action);
-            var result = next(action);
-            return result;
-        };
-    };
-};
-
-var store = createStore(sflReducer, initialState);
-var store = applyMiddleware(store, [loggerMiddleware]);
-
-var today = moment().format('MM/DD/YYYY');
-var todaysLog = store.getState().log;
-var todaysFoods = todaysLog ? todaysLog[today] : [];
-
-var mi = maxIndex(todaysFoods ? todaysFoods : []);
-var initialIndex = store.getState().initialIndex ? store.getState().initialIndex : mi;
-
-var saveState = function(state) {
-    localStorage.setItem('state', JSON.stringify(store.getState()));
-};
-
    
-store.subscribe(render);
+store.subscribe(ren);
 store.subscribe(saveState);
-render();
-
-export { root, store, render };
+ren();
