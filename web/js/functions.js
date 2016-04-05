@@ -33,6 +33,7 @@ var makeDateWindow = function(startDate, daysBefore) {
 };
 
 /* tests below */
+/*
 
 fakeFoods = [{ calories: 100 }, { calories: 250 }, { calories: 150 }];
 console.assert(foodTotal(fakeFoods) == 500 ,
@@ -59,3 +60,4 @@ expectedDates = ['03/02/2016','03/01/2016','02/29/2016'];
 testDates = makeDateWindow('2016-03-02', 3);
 console.assert(_.isEqual(testDates, expectedDates),
     'failed making date window');
+*/

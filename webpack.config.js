@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './index.js',
+    entry: './web/js/simple-food-log.js',
     output: { path: __dirname, filename: 'web/js/bundle.js' },
     module: {
         loaders: [

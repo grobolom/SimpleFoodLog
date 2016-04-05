@@ -1,6 +1,14 @@
-// render and start app
+import {
+    foodTotal,
+    calculateCalories,
+    maxIndex,
+    getFoodsByDate,
+    makeDateWindow
+} from './functions.js';
+import { createStore, applyMiddleware } from './store.js';
+import { combineReducers, sflReducer } from './reducers.js';
 
-RCE = React.createElement;
+var RCE = React.createElement;
 
 var root = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
@@ -77,8 +85,8 @@ var today = moment().format('MM/DD/YYYY');
 var todaysLog = store.getState().log;
 var todaysFoods = todaysLog ? todaysLog[today] : [];
 
-var maxIndex = maxIndex(todaysFoods ? todaysFoods : []);
-var initialIndex = store.getState().initialIndex ? store.getState().initialIndex : maxIndex;
+var mi = maxIndex(todaysFoods ? todaysFoods : []);
+var initialIndex = store.getState().initialIndex ? store.getState().initialIndex : mi;
 
 var saveState = function(state) {
     localStorage.setItem('state', JSON.stringify(store.getState()));

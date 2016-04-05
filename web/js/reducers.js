@@ -80,6 +80,8 @@ var sflReducer = function(state, action) {
     return state;
 };
 
+/*
+
 // tests
 var testInitialState = {
     log: { dates: [] }
@@ -107,3 +109,5 @@ var expectedNextState = {
 var nextState = sflReducer(testInitialState, testResetState);
 
 console.assert(_.isEqual(expectedNextState, nextState), 'resets state');
+
+*/
