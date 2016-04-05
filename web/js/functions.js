@@ -61,3 +61,5 @@ testDates = makeDateWindow('2016-03-02', 3);
 console.assert(_.isEqual(testDates, expectedDates),
     'failed making date window');
 */
+
+export { foodTotal, calculateCalories, maxIndex, getFoodsByDate, makeDateWindow };

@@ -1,4 +1,4 @@
-var FoodAverage = React.createClass({
+export const FoodAverage = React.createClass({
     displayName: 'FoodAverage',
 
     render: function () {

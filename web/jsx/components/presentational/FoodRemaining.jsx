@@ -1,4 +1,4 @@
-var FoodRemaining = React.createClass({
+export const FoodRemaining = React.createClass({
     propTypes: {
         remaining: React.PropTypes.number
     },

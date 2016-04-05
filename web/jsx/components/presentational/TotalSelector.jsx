@@ -1,4 +1,4 @@
-var TotalSelector = React.createClass({
+export const TotalSelector = React.createClass({
     handleChange: function(event) {
         store.dispatch(setCalorieGoal(event.target.value));
     },

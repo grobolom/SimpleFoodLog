@@ -1,4 +1,4 @@
-var DayFoodSum = React.createClass({
+export const DayFoodSum = React.createClass({
     render: function() {
         var strongClasses = this.props.goodOrBad + ' u-pull-right';
         var selected = this.props.selected ? 'selected' : '';

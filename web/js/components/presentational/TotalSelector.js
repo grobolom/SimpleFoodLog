@@ -1,4 +1,4 @@
-var TotalSelector = React.createClass({
+export const TotalSelector = React.createClass({
     displayName: 'TotalSelector',
 
     handleChange: function (event) {

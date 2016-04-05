@@ -1,5 +1,7 @@
-var FoodSumList = React.createClass({
-    displayName: "FoodSumList",
+import FoodSum from '../../components.js';
+
+export const FoodSumList = React.createClass({
+    displayName: 'FoodSumList',
 
     render: function () {
         var sums = this.props.log.map(function (element, index) {
@@ -12,7 +14,7 @@ var FoodSumList = React.createClass({
             });
         }, this);
         return React.createElement(
-            "ul",
+            'ul',
             null,
             sums
         );

@@ -1,4 +1,4 @@
-var FoodInput = React.createClass({
+export const FoodInput = React.createClass({
     render: function() {
         return (
             <form onSubmit={ this.props.handleSubmit }>

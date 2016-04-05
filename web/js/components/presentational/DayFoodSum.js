@@ -1,4 +1,4 @@
-var DayFoodSum = React.createClass({
+export const DayFoodSum = React.createClass({
     displayName: 'DayFoodSum',
 
     render: function () {

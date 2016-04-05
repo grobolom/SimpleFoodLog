@@ -1,4 +1,6 @@
-var FoodSumList = React.createClass({
+import FoodSum from '../../components.js';
+
+export const FoodSumList = React.createClass({
     render: function() {
         var sums = this.props.log.map(function(element, index) {
             return <FoodSum

@@ -40,3 +40,5 @@ var createStore = function (reducer, initialState) {
         subscribe: subscribe
     };
 };
+
+export { applyMiddleware, createStore };

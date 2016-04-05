@@ -1,4 +1,4 @@
-var FoodTotal = React.createClass({
+export const FoodTotal = React.createClass({
     render: function() {
         return (
             <h5>

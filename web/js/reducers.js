@@ -111,3 +111,4 @@ var nextState = sflReducer(testInitialState, testResetState);
 console.assert(_.isEqual(expectedNextState, nextState), 'resets state');
 
 */
+export { combineReducers, sflReducer };

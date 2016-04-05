@@ -1,4 +1,4 @@
-var FoodInput = React.createClass({
+export const FoodInput = React.createClass({
     displayName: 'FoodInput',
 
     render: function () {

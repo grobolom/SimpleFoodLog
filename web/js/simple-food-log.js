@@ -1,12 +1,7 @@
-import {
-    foodTotal,
-    calculateCalories,
-    maxIndex,
-    getFoodsByDate,
-    makeDateWindow
-} from './functions.js';
+import { foodTotal, calculateCalories, maxIndex, getFoodsByDate, makeDateWindow } from './functions.js';
 import { createStore, applyMiddleware } from './store.js';
 import { combineReducers, sflReducer } from './reducers.js';
+import SimpleFoodLog from './app.js';
 
 var RCE = React.createElement;
 
@@ -96,3 +91,5 @@ var saveState = function(state) {
 store.subscribe(render);
 store.subscribe(saveState);
 render();
+
+export { root, store, render };

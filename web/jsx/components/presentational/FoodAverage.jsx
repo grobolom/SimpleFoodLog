@@ -1,4 +1,4 @@
-var FoodAverage = React.createClass({
+export const FoodAverage = React.createClass({
     render: function() {
         return (
             <h5 className='six columns'>

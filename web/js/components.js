@@ -1,8 +1,12 @@
 // stuff the components in here until we really want to extract them
 
-RCE = React.createComponent;
+import FoodInput from './components/presentational/FoodInput.js';
+import FoodEntry from './components/presentational/FoodEntry.js';
+import DayFoodSum from './components/presentational/DayFoodSum.js';
 
-var FoodInputContainer = React.createClass({
+var RCE = React.createComponent;
+
+export const FoodInputContainer = React.createClass({
     handleSubmit: function(event) {
         event.preventDefault();
         input = event.target.children[0];
@@ -16,7 +20,7 @@ var FoodInputContainer = React.createClass({
 });
 
 
-var RemovableFoodEntry = React.createClass({
+export const RemovableFoodEntry = React.createClass({
     handleClick: function() {
         store.dispatch(removeFood(this.props));
     },
@@ -30,7 +34,7 @@ var RemovableFoodEntry = React.createClass({
 });
 
 
-var FoodList = React.createClass({
+export const FoodList = React.createClass({
     render: function() {
         return (
             RCE('ul', {}, this.props.foods.map(function(food) {
@@ -41,7 +45,7 @@ var FoodList = React.createClass({
     }
 });
 
-var FoodSum = React.createClass({
+export const FoodSum = React.createClass({
     handleClick : function() {
         store.dispatch(selectDate(this.props.date));
     },

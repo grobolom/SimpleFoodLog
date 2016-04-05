@@ -1,14 +1,12 @@
-/*
-import FoodTotal from './components/presentational/FoodTotal'
-import FoodInputContainer from './components/presentational/FoodInputContainer'
-import FoodList from './components/presentational/FoodList'
-import FoodAverage from './components/presentational/FoodAverage'
-import FoodRemaining from './components/presentational/FoodRemaining'
-import TotalSelector from './components/presentational/TotalSelector'
-import FoodSumList from './components/presentational/FoodSumList'
-*/
+import FoodTotal from './components/presentational/FoodTotal.js';
+import FoodAverage from './components/presentational/FoodAverage.js';
+import FoodRemaining from './components/presentational/FoodRemaining.js';
+import TotalSelector from './components/presentational/TotalSelector.js';
+import FoodSumList from './components/presentational/FoodSumList.js';
 
-var SimpleFoodLog = React.createClass({
+import { FoodInputContainer, FoodList } from './components.js';
+
+export const SimpleFoodLog = React.createClass({
     render: function() {
         return (
             <div className='container'>
