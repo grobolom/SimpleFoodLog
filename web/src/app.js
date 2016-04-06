@@ -1,6 +1,15 @@
 import { createStore } from './store.js';
 import { RootReducer } from './reducers/rootReducer.js';
 
+var oldState = localStorage.getItem('state');
+var initialState = (oldState && oldState != "undefined") ?
+    JSON.parse(oldState) :
+    {
+        initialIndex: 0,
+        selectedDate: moment().format('MM/DD/YYYY'),
+        log: { dates: [] }
+    };
+
 var rootElement = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
         return true;
@@ -17,6 +26,14 @@ var ren = function() {
     );
 };
 
-var store = createStore(function() {}, []);
+var saveState = function(state) {
+    localStorage.setItem('state', JSON.stringify(store.getState()));
+};
+
+
+var store = createStore(RootReducer, initialState);
 store.subscribe(ren);
+store.subscribe(saveState);
+
+console.log(initialState);
 ren();
