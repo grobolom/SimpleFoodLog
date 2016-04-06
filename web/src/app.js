@@ -16,7 +16,9 @@ var rootElement = React.createClass({
         return true;
     },
     render: function() {
-        return (<p>bacon</p>);
+        return (
+            <SimpleFoodLog />
+        );
     }
 });
 
