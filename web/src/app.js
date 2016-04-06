@@ -1,5 +1,6 @@
 import { createStore } from './store.js';
 import { RootReducer } from './reducers/rootReducer.js';
+import { SimpleFoodLog } from './components/SimpleFoodLog.js';
 
 var oldState = localStorage.getItem('state');
 var initialState = (oldState && oldState != "undefined") ?
