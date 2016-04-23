@@ -1,3 +1,6 @@
+import React from 'react';
+import { render } from 'react-dom';
+
 import { createStore } from './store.js';
 import { RootReducer } from './reducers/rootReducer.js';
 import { SimpleFoodLog } from './components/SimpleFoodLog.js';
@@ -23,7 +26,7 @@ var rootElement = React.createClass({
 });
 
 var ren = function() {
-    ReactDOM.render(
+    render(
         React.createElement(rootElement, {}),
         document.getElementById('react-app')
     );
