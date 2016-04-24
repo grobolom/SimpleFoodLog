@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const FoodInput = React.createClass({
     render: function() {
         return (

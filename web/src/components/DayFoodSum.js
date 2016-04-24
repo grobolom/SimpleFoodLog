@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const DayFoodSum = React.createClass({
     render: function() {
         var strongClasses = this.props.goodOrBad + ' u-pull-right';

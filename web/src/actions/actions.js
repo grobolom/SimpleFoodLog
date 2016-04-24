@@ -1,31 +1,31 @@
-var addFood = function (entry) {
+export const addFood = function (entry) {
     return {
         type: 'ADD_FOOD',
         entry: entry
     }
 };
 
-var removeFood = function (entry) {
+export const removeFood = function (entry) {
     return {
         type: 'REMOVE_FOOD',
         entry: entry
     }
 };
 
-var resetState = function () {
+export const resetState = function () {
     return {
         type: 'RESET_STATE'
     }
 };
 
-var selectDate = function (date) {
+export const selectDate = function (date) {
     return {
         type: 'SELECT_DATE',
         date: date
     }
 };
 
-var setCalorieGoal = function (amount) {
+export const setCalorieGoal = function (amount) {
     return {
         type: 'SET_CALORIE_GOAL',
         amount: amount

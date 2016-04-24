@@ -1,6 +1,9 @@
+import React from 'react';
+import { setCalorieGoal } from '../actions/actions.js'
+
 export const TotalSelector = React.createClass({
     handleChange: function(event) {
-        store.dispatch(setCalorieGoal(event.target.value));
+        this.props.store.dispatch(setCalorieGoal(event.target.value));
     },
     render: function() {
         return (

@@ -1,4 +1,6 @@
-var FoodEntry = React.createClass({
+import React from 'react';
+
+export const FoodEntry = React.createClass({
     render: function() {
         return (
             <li>

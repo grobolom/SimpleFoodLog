@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const FoodTotal = React.createClass({
     render: function() {
         return (

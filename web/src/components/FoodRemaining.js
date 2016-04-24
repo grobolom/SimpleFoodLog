@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const FoodRemaining = React.createClass({
     propTypes: {
         remaining: React.PropTypes.number

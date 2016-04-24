@@ -1,5 +1,12 @@
 import React from 'react';
 
+import { FoodTotal } from './FoodTotal.js';
+import { FoodInputContainer, FoodList, FoodSum } from '../components.js';
+import { FoodAverage } from './FoodAverage.js';
+import { FoodRemaining } from './FoodRemaining.js';
+import { TotalSelector } from './TotalSelector.js';
+import { FoodSumList } from './FoodSumList.js';
+
 export const SimpleFoodLog = React.createClass({
     render: function() {
         return (
@@ -10,9 +17,12 @@ export const SimpleFoodLog = React.createClass({
                         <FoodTotal
                             total={ this.props.todaysTotal }
                         />
-                        <FoodInputContainer />
+                        <FoodInputContainer
+                            store = { this.props.store }
+                        />
                         <FoodList
                             foods={ this.props.todaysFoods }
+                            store = { this.props.store }
                         />
                         <hr />
                     </div>
@@ -27,6 +37,7 @@ export const SimpleFoodLog = React.createClass({
                         <form>
                             <TotalSelector
                                 calorieGoal={ this.props.calorieGoal }
+                                store = { this.props.store }
                             />
                             <input
                                 type='submit'
@@ -37,6 +48,7 @@ export const SimpleFoodLog = React.createClass({
                             log={ this.props.lastWeeksLog }
                             selectedDate={ this.props.today }
                             calorieGoal={ this.props.calorieGoal }
+                            store = { this.props.store }
                         />
                     </div>
                 </div>
