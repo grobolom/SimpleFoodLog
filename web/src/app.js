@@ -21,6 +21,9 @@ var initialState = (oldState && oldState != "undefined") ?
         selectedDate: moment().format('MM/DD/YYYY'),
         log: { dates: [] }
     };
+var initialState = Object.assign({}, initialState, {
+    selectedDate: moment().format('MM/DD/YYYY')
+});
 
 var store = createStore(RootReducer, initialState);
 
