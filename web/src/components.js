@@ -81,7 +81,7 @@ export const FoodSum = React.createClass({
     render: function() {
         return (
             <DayFoodSum
-                goodOrBad = { this.goodOrBad }
+                goodOrBad = { this.goodOrBad() }
                 handleClick = { this.handleClick }
                 total = { this.props.total }
                 selected = { this.props.selected }
